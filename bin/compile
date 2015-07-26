@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+# bin/compile <build-dir> <cache-dir> <env-dir>
+
+set -e
+set -o pipefail   # don't ignore exit codes when piping output
+set -o nounset    # fail on unset variables
+unset GIT_DIR     # Avoid GIT_DIR leak from previous build steps
+
+### Configure directories
+
+BUILD_DIR=${1:-}
+CACHE_DIR=${2:-}
+ENV_DIR=${3:-}
+BP_DIR=$(cd $(dirname ${0:-}); cd ..; pwd)
+
+# create $BUILD_DIR/.buildpack
+rm -rf $BUILD_DIR/.buildpack 
+mkdir $BUILD_DIR/.buildpack
+
+#download JDK
+wget --continue --directory-prefix=$CACHE_DIR http://download.run.pivotal.io/openjdk/precise/x86_64/openjdk-1.8.0_51.tar.gz
+mkdir $BUILD_DIR/.buildpack/jdk
+tar xvzf $CACHE_DIR/openjdk-1.8.0_51.tar.gz --directory $BUILD_DIR/.buildpack/jdk/
+
+#download app-dynamics 
+wget --continue --directory-prefix=$CACHE_DIR http://download.run.pivotal.io/app-dynamics/app-dynamics-4.1.0_4.zip
+unzip $CACHE_DIR/app-dynamics-4.1.0_4.zip -d $BUILD_DIR/.buildpack/
+mv $BUILD_DIR/.buildpack/ver4.1.0.4 $BUILD_DIR/.buildpack/app_dynamics_agent
