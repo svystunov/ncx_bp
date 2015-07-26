@@ -27,5 +27,10 @@ wget --continue --directory-prefix=$CACHE_DIR http://download.run.pivotal.io/app
 mkdir $BUILD_DIR/.buildpack/app_dynamics_agent
 unzip $CACHE_DIR/app-dynamics-4.1.0_4.zip -d $BUILD_DIR/.buildpack/app_dynamics_agent
 
+#download wildfly
+wget --continue --directory-prefix=$CACHE_DIR http://download.jboss.org/wildfly/9.0.1.Final/wildfly-9.0.1.Final.zip
+mkdir $BUILD_DIR/.buildpack/wildfly
+unzip $CACHE_DIR/wildfly-9.0.1.Final.zip -d $BUILD_DIR/.buildpack/wildfly
+
 echo `ls $BUILD_DIR/.buildpack/`
 
