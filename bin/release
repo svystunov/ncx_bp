@@ -4,10 +4,6 @@
 echo addons: []
 echo default_process_types:
 echo   web:  ! 'JAVA_HOME=$PWD/.java-buildpack/jdk JAVA_OPTS="-Djava.io.tmpdir=$TMPDIR
-    -XX:OnOutOfMemoryError=$PWD/.java-buildpack/jdk/bin/killjava.sh  -Xms750m -Xmx1024m
-    -javaagent:$PWD/.java-buildpack/app_dynamics_agent/javaagent.jar -Dappdynamics.agent.applicationName=
-    -Dappdynamics.agent.tierName=CloudFoundry -Dappdynamics.agent.nodeName=$(expr
-    "$VCAP_APPLICATION" : ''.*instance_index[": ]*\([[:digit:]]*\).*'') -Dappdynamics.agent.accountAccessKey=[REDACTED]
-    -Dappdynamics.agent.accountName=[REDACTED] -Dappdynamics.controller.hostName=[REDACTED]
-    -Dappdynamics.controller.port=443 -Dappdynamics.controller.ssl.enabled=true -Dhttp.port=$PORT"
+    -XX:OnOutOfMemoryError=$PWD/.java-buildpack/jdk/bin/killjava.sh  -Xss1M -Xmx768M -Xms768M -XX:MaxMetaspaceSize=104857K -XX:MetaspaceSize=104857K
+    -Dhttp.port=$PORT"
     $PWD/.java-buildpack/wildfly/bin/standalone.sh -b 0.0.0.0 -Djboss.http.port=$PORT'
