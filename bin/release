@@ -12,5 +12,4 @@ default_process_types:
     -Dappdynamics.agent.accountName=[REDACTED] -Dappdynamics.controller.hostName=[REDACTED]
     -Dappdynamics.controller.port=443 -Dappdynamics.controller.ssl.enabled=true -Dhttp.port=$PORT"
     $PWD/.java-buildpack/jboss/bin/standalone.sh -b 0.0.0.0'
-
 EOF
