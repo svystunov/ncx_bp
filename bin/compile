@@ -24,8 +24,8 @@ tar xvzf $CACHE_DIR/openjdk-1.8.0_51.tar.gz --directory $BUILD_DIR/.buildpack/jd
 
 #download app-dynamics 
 wget --continue --directory-prefix=$CACHE_DIR http://download.run.pivotal.io/app-dynamics/app-dynamics-4.1.0_4.zip
-unzip $CACHE_DIR/app-dynamics-4.1.0_4.zip -d $BUILD_DIR/.buildpack/
-mv $BUILD_DIR/.buildpack/ver4.1.0.4 $BUILD_DIR/.buildpack/app_dynamics_agent
+mkdir $BUILD_DIR/.buildpack/app_dynamics_agent
+unzip $CACHE_DIR/app-dynamics-4.1.0_4.zip -d $BUILD_DIR/.buildpack/app_dynamics_agent
 
 echo `ls $BUILD_DIR/.buildpack/`
 
